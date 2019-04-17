@@ -1,12 +1,7 @@
 #include <stdlib.h>
-#include <stdio.h>
+//#include <stdio.h>
 
 #include "nvector.h"
-
-/*
-    Last edited: 25/04/2017
-
-	*/
 
 // Function to initialize the vector
 void setNumVector(nvector *cvector, size_t initialSize)
@@ -44,39 +39,39 @@ int appendNumVector(nvector *cvector, unsigned int *element)
     if (cvector->dataIndex == (cvector->vectorSize - 1))
     {
         if (cvector->vectorSize < NV_MAX_SIZE)
-		{
-			cvector->vectorSize += NV_GROWTH_FACTOR;
-			cvector->data = (unsigned int *)realloc(cvector->data, cvector->vectorSize * sizeof(unsigned int));
+        {
+            cvector->vectorSize += NV_GROWTH_FACTOR;
+            cvector->data = (unsigned int *)realloc(cvector->data, cvector->vectorSize * sizeof(unsigned int));
 
-			for (unsigned int i = cvector->dataIndex; i < cvector->vectorSize; i++)
-			{
-				cvector->data[i] = 0;
-			}
-		}
-		else
-		{
-			return -1;
-		}
+            for (unsigned int i = cvector->dataIndex; i < cvector->vectorSize; i++)
+            {
+                cvector->data[i] = 0;
+            }
+        }
+        else
+        {
+            return -1;
+        }
     }
 
     cvector->data[cvector->dataIndex++] = *element;
 
-	return 0;
+    return 0;
 }
 
 // Function to print the vector in the terminal
-void showNumVector(nvector *cvector, int i)
-{
-    printf("nvector holds: ");
-    for (cvector->printIndex = i; (cvector->printIndex) < (cvector->dataIndex); cvector->printIndex++)
-    {
-        printf("\t%d", cvector->data[cvector->printIndex]);
-        if ((cvector->printIndex) < (cvector->dataIndex - 1))
-        {
-            printf("\n\t");
-        }
-    }
-}
+//EXPORT void __stdcall showNumVector(nvector *cvector, int i)
+//{
+//    printf("nvector holds: ");
+//    for (cvector->printIndex = i; (cvector->printIndex) < (cvector->dataIndex); cvector->printIndex++)
+//    {
+//        printf("\t%d", cvector->data[cvector->printIndex]);
+//        if ((cvector->printIndex) < (cvector->dataIndex - 1))
+//        {
+//            printf("\n\t");
+//        }
+//    }
+//}
 
 // Function to clear and deallocate the vector
 void freeNumVector(nvector *cvector)

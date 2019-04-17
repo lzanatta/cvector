@@ -1,12 +1,12 @@
 #include <stdlib.h>
-#include <stdio.h>
+//#include <stdio.h>
 
 #include "svector.h"
 
 // Allocate and zero initialize vector
 int setStrVector(svector *cvector, size_t initialSize)
 {
-	/*
+    /*
         Other possible methods to allocate and clear the array:
 
         Using malloc (requires manually clearing the array after allocation):
@@ -28,29 +28,30 @@ int setStrVector(svector *cvector, size_t initialSize)
     // Allocates the array and initializes all bits to zero
     cvector->data = (char *)calloc(initialSize, sizeof(char));
 
-	if (cvector->data == NULL)
-	{
-		return SV_ALLOC_ERROR;
-	}
-	else
-	{
-		cvector->vectorSize = initialSize;
-		cvector->index = 0;
+    //if ((cvector->data = (char *)calloc(initialSize, sizeof(char))) == NULL)
+    if (cvector->data == NULL)
+    {
+        return SV_ALLOC_ERROR;
+    }
+    else
+    {
+        cvector->vectorSize = initialSize;
+        cvector->index = 0;
 
-		switch (initialSize)
-		{
-		case SV_INITIAL_SIZE_ONE:
-			cvector->growthFactor = SV_GROWTH_FACTOR_ONE;
-			cvector->maxSize = SV_MAX_SIZE_ONE;
-			break;
-		case SV_INITIAL_SIZE_TWO:
-			cvector->growthFactor = SV_GROWTH_FACTOR_TWO;
-			cvector->maxSize = SV_MAX_SIZE_TWO;
-			break;
-		}
-	}
+        switch (initialSize)
+        {
+        case SV_INITIAL_SIZE_ONE:
+            cvector->growthFactor = SV_GROWTH_FACTOR_ONE;
+            cvector->maxSize = SV_MAX_SIZE_ONE;
+            break;
+        case SV_INITIAL_SIZE_TWO:
+            cvector->growthFactor = SV_GROWTH_FACTOR_TWO;
+            cvector->maxSize = SV_MAX_SIZE_TWO;
+            break;
+        }
+    }
 
-	return 0;
+    return 0;
 }
 
 // Append character into vector and resize it if necessary
@@ -60,36 +61,36 @@ int appendStrVector(svector *cvector, char *element)
     {
         //if (cvector->vectorSize < SV_MAX_SIZE_ONE)
         if (cvector->vectorSize < cvector->maxSize)
-		{
-			//cvector->vectorSize += SV_GROWTH_FACTOR_ONE;
-			cvector->vectorSize += cvector->growthFactor;
-			cvector->data = (char *)realloc(cvector->data, cvector->vectorSize * sizeof(char));
+        {
+            //cvector->vectorSize += SV_GROWTH_FACTOR_ONE;
+            cvector->vectorSize += cvector->growthFactor;
+            cvector->data = (char *)realloc(cvector->data, cvector->vectorSize * sizeof(char));
 
-			for (unsigned int i = cvector->index; i < cvector->vectorSize; i++)
-			{
-				cvector->data[i] = '\0';
-			}
-		}
-		else
-		{
-			return SV_CAP_REACHED;
-		}
+            for (unsigned int i = cvector->index; i < cvector->vectorSize; i++)
+            {
+                cvector->data[i] =  '\0';
+            }
+        }
+        else
+        {
+            return SV_CAP_REACHED;
+        }
     }
 
     cvector->data[cvector->index++] = *element;
 
-	return 0;
+    return 0;
 }
 
 // Append character into vector and resize it if necessary
-void concatStrVector(svector *destination, char *source)
-{
-	while (*source != '\0')
-	{
-		appendStrVector(destination, source);
-		source++;
-	}
-}
+//EXPORT void __stdcall concatStrVector(svector *destination, char *source)
+//{
+//	while (*source != '\0')
+//	{
+//		appendStrVector(destination, source);
+//		source++;
+//	}
+//}
 
 // Clear vector and reset vector
 void clearStrVector(svector *cvector)
@@ -102,10 +103,10 @@ void clearStrVector(svector *cvector)
 }
 
 // Print vector in the terminal
-void showStrVector(svector *cvector)
-{
-    printf("%s", cvector->data);
-}
+//EXPORT void __stdcall showStrVector(svector *cvector)
+//{
+//    printf("%s", cvector->data);
+//}
 
 // Clear and deallocate vector
 void freeStrVector(svector *cvector)
