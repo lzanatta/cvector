@@ -1,0 +1,21 @@
+# Folders
+bin/
+lib/
+obj/
+
+# Object files
+*.o
+
+# Libraries
+*.lib
+*.a
+
+# Shared objects
+*.dll
+
+# Executables
+*.exe
+
+# Misc
+*.def
+*.layout
