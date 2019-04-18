@@ -1,4 +1,4 @@
 # cvector
-A (very) simple and tiny vector library for C
+A simple vector implementation for the C language.
 
 More info coming soon...
