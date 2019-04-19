@@ -15,7 +15,7 @@ int main(void)
 
 //    FILE *testFile;
 //
-//    testFile = fopen("example-input.txt", "r");
+//    testFile = fopen("input.txt", "r");
 
     printf("\nUsing cvector as a DLL\n\n");
 

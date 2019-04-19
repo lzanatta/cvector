@@ -13,7 +13,7 @@ int main(void)
 
     FILE *testFile;
 
-    testFile = fopen("example-input.txt", "r");
+    testFile = fopen("input.txt", "r");
 
     printf("\nUsing cvector included inside a program\n\n");
 
