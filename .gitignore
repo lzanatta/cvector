@@ -1,7 +1,10 @@
-# Folders
+# Compilation folders
 bin/
 lib/
 obj/
+
+# VScode folder
+.vscode/
 
 # Object files
 *.o
