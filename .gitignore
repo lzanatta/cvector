@@ -1,10 +1,10 @@
-# Compilation folders
+# Build folders
 bin/
 lib/
 obj/
 
-# VScode folder
-.vscode/
+# VScode cache folder
+.vscode/ipch/
 
 # Object files
 *.o
