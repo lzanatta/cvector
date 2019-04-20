@@ -1,0 +1,90 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared",
+        "showReuseMessage": false,
+        "clear": false
+    },
+    "tasks": [
+        {
+            "label": "clean",
+            "type": "shell",
+            "windows": {
+                "command": "${workspaceFolder}/build_folders clean"
+            },
+            "group": "none"
+        },
+        {
+            "label": "make build dirs",
+            "type": "shell",
+            "windows": {
+                "command": "${workspaceFolder}/build_folders make"
+            },
+            "group": "build"
+        },
+        {
+            "label": "compile svector",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-Wall", "-Wextra", "-Wunreachable-code", "-pedantic", "-O2",
+                "-I${workspaceFolder}/",
+                "-c", "${workspaceFolder}/src/svector.c",
+                "-o", "${workspaceFolder}/obj/release/src/svector.o"
+            ],
+            "group": "build"
+        },
+        {
+            "label": "compile nvector",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-Wall", "-Wextra", "-Wunreachable-code", "-pedantic", "-O2",
+                "-I${workspaceFolder}/",
+                "-c", "${workspaceFolder}/src/nvector.c",
+                "-o", "${workspaceFolder}/obj/release/src/nvector.o"
+            ],
+            "group": "build"
+        },
+        {
+            "label": "compile test_static",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-Wall", "-Wextra", "-Wunreachable-code", "-pedantic", "-O2",
+                "-I${workspaceFolder}/",
+                "-c", "${workspaceFolder}/test/test_static.c",
+                "-o", "${workspaceFolder}/obj/release/test/test_static.o"
+            ],
+            "group": "build"
+        },
+        {
+            "label": "build test_static",
+            "dependsOn": [
+                "make build dirs",
+                "compile svector",
+                "compile nvector",
+                "compile test_static"
+            ],
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-o",
+                "${workspaceFolder}/bin/test_static.exe",
+                "${workspaceFolder}/obj/release/src/svector.o",
+                "${workspaceFolder}/obj/release/src/nvector.o",
+                "${workspaceFolder}/obj/release/test/test_static.o",
+                "-s"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
