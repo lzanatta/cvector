@@ -1,16 +1,18 @@
-@ECHO OFF
+@echo off
 
-IF [%1]==[] GOTO:EOF
-IF [%1]==[make] GOTO:MAKE
-IF [%1]==[clean] GOTO:CLEAN
+if [%1]==[] goto :eof
+if [%1]==[make] goto :make
+if [%1]==[clean] goto :clean
 
-:MAKE
-IF not exist "obj\release\src\" mkdir obj\release\src\
-IF not exist "obj\release\test\" mkdir obj\release\test\
-IF not exist "bin\" mkdir bin\
-GOTO:EOF
+:: make build folders for object files and .exe output
+:make
+if not exist "obj\release\src\" mkdir obj\release\src\
+if not exist "obj\release\test\" mkdir obj\release\test\
+if not exist "bin\" mkdir bin\
+goto :eof
 
-:CLEAN
-IF exist "obj\" rmdir obj\ /S /Q
-IF exist "bin\" rmdir bin\ /S /Q
-GOTO:EOF
+:: clean compilation files (just delete folders) for a clean build
+:clean
+if exist "obj\" rmdir obj\ /S /Q
+if exist "bin\" rmdir bin\ /S /Q
+goto :eof
