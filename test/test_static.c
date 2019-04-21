@@ -3,34 +3,55 @@
 #include "src/svector.h"
 #include "src/nvector.h"
 
-int main(void)
+int main(int argc, char *argv[])
 {   
-    char c = 0;
-    size_t i = 0;
+    char ch = 0;
+    size_t idx = 0;
 
     svector string;
     nvector numbers;
 
-    setStrVector(&string, SV_INITIAL_SIZE_ONE);
-    setNumVector(&numbers, NV_INITIAL_SIZE);
-
     FILE *testFile;
 
-    testFile = fopen("input.txt", "r");
+    // Initializing the vector with the provided size macros; any value can be used though
+    setStrVector(&string, SV_INITIAL_LENGTH_ONE);
+    setNumVector(&numbers, NV_INITIAL_SIZE);
 
-    printf("\n Using cvector built statically with test program\n\n");
+    printf("\n Using cvector built statically with test program.\n\n");
+    printf(" Reading contents from '%s':\n\n", argv[1]);
 
-    while ((c = fgetc(testFile)) != EOF) {
-        appendStrVector(&string, &c);
+    testFile = fopen(argv[1], "r");
+
+    if (testFile != NULL)
+    {   
+        // Appending data one character at a time
+        while ((ch = fgetc(testFile)) != EOF)
+        {
+            appendStrVector(&string, &ch);
+        }
+
+        printf(" Done.\n\n");
+        printf(" File contents:\n\n");
+
+        /*
+         * Using .index instead of .length because .index keeps track of the actual data length in the vector,
+         * .length is the <current> allocated length
+         */
+        for (idx = 0; idx < string.index; idx++)
+        {
+            // Data inside the vector is accessible like a regular array
+            printf("%c", string.data[idx]);
+        }
+
+        printf(" \nDone.\n\n");
+
+        // After using the vector (allocated in the heap), it should be deallocated
+        freeStrVector(&string);
     }
-
-    printf(" <string> contents:\n\n");
-
-    for (i = 0; i < string.vectorSize; i++) {
-        printf("%c", string.data[i]);
+    else
+    {
+        printf(" Error opening file.\n");
     }
-
-    printf("\n");
 
     return 0;
 }
