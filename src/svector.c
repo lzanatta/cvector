@@ -40,13 +40,13 @@ int setStrVector(svector *cvector, size_t initial_length)
 
         switch (initial_length)
         {
-        case SV_INITIAL_SIZE_ONE:
-            cvector->resize_rate = SV_GROWTH_FACTOR_ONE;
-            cvector->max_length = SV_MAX_SIZE_ONE;
+        case SV_INITIAL_LENGTH_ONE:
+            cvector->resize_rate = SV_RESIZE_RATE_ONE;
+            cvector->max_length = SV_MAX_LENGTH_ONE;
             break;
-        case SV_INITIAL_SIZE_TWO:
-            cvector->resize_rate = SV_GROWTH_FACTOR_TWO;
-            cvector->max_length = SV_MAX_SIZE_TWO;
+        case SV_INITIAL_LENGTH_TWO:
+            cvector->resize_rate = SV_RESIZE_RATE_TWO;
+            cvector->max_length = SV_MAX_LENGTH_TWO;
             break;
         }
     }
