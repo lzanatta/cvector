@@ -4,7 +4,7 @@
 #include "svector.h"
 
 // Allocate and zero initialize vector
-int setStrVector(svector *cvector, size_t initialSize)
+int setStrVector(svector *cvector, size_t initial_length)
 {
     /*
         Other possible methods to allocate and clear the array:
@@ -26,7 +26,7 @@ int setStrVector(svector *cvector, size_t initialSize)
         */
 
     // Allocates the array and initializes all bits to zero
-    cvector->data = (char *)calloc(initialSize, sizeof(char));
+    cvector->data = (char *)calloc(initial_length, sizeof(char));
 
     //if ((cvector->data = (char *)calloc(initialSize, sizeof(char))) == NULL)
     if (cvector->data == NULL)
@@ -35,18 +35,18 @@ int setStrVector(svector *cvector, size_t initialSize)
     }
     else
     {
-        cvector->vectorSize = initialSize;
+        cvector->length = initial_length;
         cvector->index = 0;
 
-        switch (initialSize)
+        switch (initial_length)
         {
         case SV_INITIAL_SIZE_ONE:
-            cvector->growthFactor = SV_GROWTH_FACTOR_ONE;
-            cvector->maxSize = SV_MAX_SIZE_ONE;
+            cvector->resize_rate = SV_GROWTH_FACTOR_ONE;
+            cvector->max_length = SV_MAX_SIZE_ONE;
             break;
         case SV_INITIAL_SIZE_TWO:
-            cvector->growthFactor = SV_GROWTH_FACTOR_TWO;
-            cvector->maxSize = SV_MAX_SIZE_TWO;
+            cvector->resize_rate = SV_GROWTH_FACTOR_TWO;
+            cvector->max_length = SV_MAX_SIZE_TWO;
             break;
         }
     }
@@ -57,16 +57,16 @@ int setStrVector(svector *cvector, size_t initialSize)
 // Append character into vector and resize it if necessary
 int appendStrVector(svector *cvector, char *element)
 {
-    if (cvector->index == (cvector->vectorSize - 1))
+    if (cvector->index == (cvector->length - 1))
     {
         //if (cvector->vectorSize < SV_MAX_SIZE_ONE)
-        if (cvector->vectorSize < cvector->maxSize)
+        if (cvector->length < cvector->max_length)
         {
             //cvector->vectorSize += SV_GROWTH_FACTOR_ONE;
-            cvector->vectorSize += cvector->growthFactor;
-            cvector->data = (char *)realloc(cvector->data, cvector->vectorSize * sizeof(char));
+            cvector->length += cvector->resize_rate;
+            cvector->data = (char *)realloc(cvector->data, cvector->length * sizeof(char));
 
-            for (unsigned int i = cvector->index; i < cvector->vectorSize; i++)
+            for (unsigned int i = cvector->index; i < cvector->length; i++)
             {
                 cvector->data[i] =  '\0';
             }
@@ -82,7 +82,7 @@ int appendStrVector(svector *cvector, char *element)
     return 0;
 }
 
-// Append character into vector and resize it if necessary
+// Concatenate string with vector and resize it if necessary
 //EXPORT void __stdcall concatStrVector(svector *destination, char *source)
 //{
 //	while (*source != '\0')
@@ -92,17 +92,17 @@ int appendStrVector(svector *cvector, char *element)
 //	}
 //}
 
-// Clear vector and reset vector
+// Clear and reset vector
 void clearStrVector(svector *cvector)
 {
-    for (cvector->index = 0; cvector->index < cvector->vectorSize; cvector->index++)
+    for (cvector->index = 0; cvector->index < cvector->length; cvector->index++)
     {
         cvector->data[cvector->index] = '\0';
     }
     cvector->index = 0;
 }
 
-// Print vector in the terminal
+// Print vector data
 //EXPORT void __stdcall showStrVector(svector *cvector)
 //{
 //    printf("%s", cvector->data);
@@ -112,9 +112,9 @@ void clearStrVector(svector *cvector)
 void freeStrVector(svector *cvector)
 {
     cvector->data = NULL;
-    cvector->vectorSize = 0;
+    cvector->length = 0;
     cvector->index = 0;
-    cvector->maxSize = 0;
-    cvector->growthFactor = 0;
+    cvector->max_length = 0;
+    cvector->resize_rate = 0;
     free(cvector->data);
 }
