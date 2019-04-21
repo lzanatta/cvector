@@ -14,16 +14,14 @@
             "type": "shell",
             "windows": {
                 "command": "${workspaceFolder}/build_folders clean"
-            },
-            "group": "build"
+            }
         },
         {
             "label": "make build dirs",
             "type": "shell",
             "windows": {
                 "command": "${workspaceFolder}/build_folders make"
-            },
-            "group": "build"
+            }
         },
         {
             "label": "compile svector",
@@ -45,6 +43,26 @@
             "group": "build"
         },
         {
+            "label": "compile svector DEBUG",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-Wunreachable-code",
+                "-pedantic",
+                "-Wextra",
+                "-Wall",
+                "-std=c11",
+                "-Og",
+                "-g",
+                "-I${workspaceFolder}/",
+                "-c",
+                "${workspaceFolder}/src/svector.c",
+                "-o",
+                "${workspaceFolder}/obj/src/svector_debug.o"
+            ],
+            "group": "test"
+        },
+        {
             "label": "compile nvector",
             "type": "shell",
             "command": "gcc",
@@ -62,6 +80,26 @@
                 "${workspaceFolder}/obj/src/nvector.o"
             ],
             "group": "build"
+        },
+        {
+            "label": "compile nvector DEBUG",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-Wunreachable-code",
+                "-pedantic",
+                "-Wextra",
+                "-Wall",
+                "-std=c11",
+                "-Og",
+                "-g",
+                "-I${workspaceFolder}/",
+                "-c",
+                "${workspaceFolder}/src/nvector.c",
+                "-o",
+                "${workspaceFolder}/obj/src/nvector_debug.o"
+            ],
+            "group": "test"
         },
         {
             "label": "compile test_static",
@@ -83,6 +121,26 @@
             "group": "build"
         },
         {
+            "label": "compile test_static DEBUG",
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-Wunreachable-code",
+                "-pedantic",
+                "-Wextra",
+                "-Wall",
+                "-std=c11",
+                "-Og",
+                "-g",
+                "-I${workspaceFolder}/",
+                "-c",
+                "${workspaceFolder}/test/test_static.c",
+                "-o",
+                "${workspaceFolder}/obj/test/test_static_debug.o"
+            ],
+            "group": "test"
+        },
+        {
             "label": "build test_static",
             "dependsOn": [
                 "make build dirs",
@@ -102,6 +160,31 @@
             ],
             "group": {
                 "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "build test_static_debug",
+            "dependsOn": [
+                "make build dirs",
+                "compile svector DEBUG",
+                "compile nvector DEBUG",
+                "compile test_static DEBUG"
+            ],
+            "type": "shell",
+            "command": "gcc",
+            "args": [
+                "-o",
+                "${workspaceFolder}/test/test_static_debug.exe",
+                "${workspaceFolder}/obj/src/svector_debug.o",
+                "${workspaceFolder}/obj/src/nvector_debug.o",
+                "${workspaceFolder}/obj/test/test_static_debug.o"
+            ],
+            "group": {
+                "kind": "test",
                 "isDefault": true
             },
             "problemMatcher": [
