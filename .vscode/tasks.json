@@ -14,8 +14,7 @@
             "type": "shell",
             "windows": {
                 "command": "${workspaceFolder}/build_folders clean"
-            },
-            "group": "none"
+            }
         },
         {
             "label": "make build dirs",
@@ -30,10 +29,17 @@
             "type": "shell",
             "command": "gcc",
             "args": [
-                "-Wall", "-Wextra", "-Wunreachable-code", "-pedantic", "-O2",
+                "-Wunreachable-code",
+                "-pedantic",
+                "-Wextra",
+                "-Wall",
+                "-std=c11",
+                "-O2",
                 "-I${workspaceFolder}/",
-                "-c", "${workspaceFolder}/src/svector.c",
-                "-o", "${workspaceFolder}/obj/release/src/svector.o"
+                "-c",
+                "${workspaceFolder}/src/svector.c",
+                "-o",
+                "${workspaceFolder}/obj/src/svector.o"
             ],
             "group": "build"
         },
@@ -42,10 +48,17 @@
             "type": "shell",
             "command": "gcc",
             "args": [
-                "-Wall", "-Wextra", "-Wunreachable-code", "-pedantic", "-O2",
+                "-Wunreachable-code",
+                "-pedantic",
+                "-Wextra",
+                "-Wall",
+                "-std=c11",
+                "-O2",
                 "-I${workspaceFolder}/",
-                "-c", "${workspaceFolder}/src/nvector.c",
-                "-o", "${workspaceFolder}/obj/release/src/nvector.o"
+                "-c",
+                "${workspaceFolder}/src/nvector.c",
+                "-o",
+                "${workspaceFolder}/obj/src/nvector.o"
             ],
             "group": "build"
         },
@@ -54,10 +67,17 @@
             "type": "shell",
             "command": "gcc",
             "args": [
-                "-Wall", "-Wextra", "-Wunreachable-code", "-pedantic", "-O2",
+                "-Wunreachable-code",
+                "-pedantic",
+                "-Wextra",
+                "-Wall",
+                "-std=c11",
+                "-O2",
                 "-I${workspaceFolder}/",
-                "-c", "${workspaceFolder}/test/test_static.c",
-                "-o", "${workspaceFolder}/obj/release/test/test_static.o"
+                "-c",
+                "${workspaceFolder}/test/test_static.c",
+                "-o",
+                "${workspaceFolder}/obj/test/test_static.o"
             ],
             "group": "build"
         },
@@ -74,15 +94,18 @@
             "args": [
                 "-o",
                 "${workspaceFolder}/bin/test_static.exe",
-                "${workspaceFolder}/obj/release/src/svector.o",
-                "${workspaceFolder}/obj/release/src/nvector.o",
-                "${workspaceFolder}/obj/release/test/test_static.o",
+                "${workspaceFolder}/obj/src/svector.o",
+                "${workspaceFolder}/obj/src/nvector.o",
+                "${workspaceFolder}/obj/test/test_static.o",
                 "-s"
             ],
             "group": {
                 "kind": "build",
                 "isDefault": true
-            }
+            },
+            "problemMatcher": [
+                "$gcc"
+            ]
         }
     ]
 }
