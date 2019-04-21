@@ -20,17 +20,17 @@
 #define SV_ALLOC_ERROR          -1
 #define SV_ALLOC_ERROR_VERBOSE  "svector allocation error"
 
-// Defining svector 'type' for a dynamically sized array of chars (string)
-typedef struct {
-    char *data;             // Pointer to vector data
-    size_t index;           // Indexes of the vector
-    size_t vectorSize;      // Current size of the vector (number of indexes)
-    size_t growthFactor;    // Factor in which the vector will expand
-    size_t maxSize;         // Maximum size the vector can have
+// svector struct for a dynamically sized array of chars ("string")
+typedef struct cvector {
+    char *data;             // Vector data
+    size_t index;           // Data index
+    size_t length;          // Vector length
+    size_t max_length;      // Maximum length
+    size_t resize_rate;     // Grow (or shrink) vector in 'x' positions
 } svector;
 
 // Allocate and zero initialize vector
-int setStrVector(svector *cvector, size_t initialSize);
+int setStrVector(svector *cvector, size_t initial_length);
 
 // Append character into vector and resize it if necessary
 int appendStrVector(svector *cvector, char *element);
@@ -38,10 +38,10 @@ int appendStrVector(svector *cvector, char *element);
 // Concatenate string with vector and resize it if necessary
 //EXPORT void __stdcall concatStrVector(svector *destination, char *source);
 
-// Clear vector and reset vector
+// Clear and reset vector
 void clearStrVector(svector *cvector);
 
-// Print vector in the terminal
+// Print vector data
 //EXPORT void __stdcall showStrVector(svector *cvector);
 
 // Clear and deallocate vector
