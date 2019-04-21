@@ -149,7 +149,7 @@
             "command": "gcc",
             "args": [
                 "-o",
-                "${workspaceFolder}/test/test_static.exe",
+                "${workspaceFolder}/bin/test_static.exe",
                 "${workspaceFolder}/obj/src/svector.o",
                 "${workspaceFolder}/obj/src/nvector.o",
                 "${workspaceFolder}/obj/test/test_static.o",
