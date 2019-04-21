@@ -15,7 +15,7 @@ int main(void)
 
     testFile = fopen("input.txt", "r");
 
-    printf("\nUsing cvector included inside a program\n\n");
+    printf("\nUsing cvector built statically with test program\n\n");
 
     return 0;
 }
