@@ -14,7 +14,8 @@
             "type": "shell",
             "windows": {
                 "command": "${workspaceFolder}/build_folders clean"
-            }
+            },
+            "group": "build"
         },
         {
             "label": "make build dirs",
@@ -93,7 +94,7 @@
             "command": "gcc",
             "args": [
                 "-o",
-                "${workspaceFolder}/bin/test_static.exe",
+                "${workspaceFolder}/test/test_static.exe",
                 "${workspaceFolder}/obj/src/svector.o",
                 "${workspaceFolder}/obj/src/nvector.o",
                 "${workspaceFolder}/obj/test/test_static.o",
@@ -103,6 +104,20 @@
                 "kind": "build",
                 "isDefault": true
             },
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "rebuild test_static",
+            "dependsOn": [
+                "clean",
+                "make build dirs",
+                "compile svector",
+                "compile nvector",
+                "compile test_static"
+            ],
+            "group": "build",
             "problemMatcher": [
                 "$gcc"
             ]
