@@ -6,8 +6,8 @@ if [%1]==[clean] goto :clean
 
 :: make build folders for object files and .exe output
 :make
-if not exist "obj\src\" mkdir obj\src\
-if not exist "obj\test\" mkdir obj\test\
+if not exist "obj\cvector\" mkdir obj\cvector\
+if not exist "obj\example\" mkdir obj\example\
 if not exist "bin\" mkdir bin\
 goto :eof
 
