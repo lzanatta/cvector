@@ -83,7 +83,7 @@ int appendStrVector(svector *cvector, char *element)
 }
 
 // Concatenate string with vector and resize it if necessary
-//EXPORT void __stdcall concatStrVector(svector *destination, char *source)
+// void concatStrVector(svector *destination, char *source)
 //{
 //	while (*source != '\0')
 //	{
@@ -103,7 +103,7 @@ void clearStrVector(svector *cvector)
 }
 
 // Print vector data
-//EXPORT void __stdcall showStrVector(svector *cvector)
+// void showStrVector(svector *cvector)
 //{
 //    printf("%s", cvector->data);
 //}
