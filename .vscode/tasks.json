@@ -36,9 +36,9 @@
                 "-O2",
                 "-I${workspaceFolder}/",
                 "-c",
-                "${workspaceFolder}/src/svector.c",
+                "${workspaceFolder}/cvector/svector.c",
                 "-o",
-                "${workspaceFolder}/obj/src/svector.o"
+                "${workspaceFolder}/obj/cvector/svector.o"
             ],
             "group": "build"
         },
@@ -53,11 +53,11 @@
                 "-Wall",
                 "-std=c11",
                 "-g",
-                "-I${workspaceFolder}\\",
+                "-I${workspaceFolder}/",
                 "-c",
-                "${workspaceFolder}\\src\\svector.c",
+                "${workspaceFolder}/cvector/svector.c",
                 "-o",
-                "${workspaceFolder}\\obj\\src\\svector_debug.o"
+                "${workspaceFolder}/obj/cvector/svector_debug.o"
             ],
             "group": "test"
         },
@@ -74,9 +74,9 @@
                 "-O2",
                 "-I${workspaceFolder}/",
                 "-c",
-                "${workspaceFolder}/src/nvector.c",
+                "${workspaceFolder}/cvector/nvector.c",
                 "-o",
-                "${workspaceFolder}/obj/src/nvector.o"
+                "${workspaceFolder}/obj/cvector/nvector.o"
             ],
             "group": "build"
         },
@@ -91,11 +91,11 @@
                 "-Wall",
                 "-std=c11",
                 "-g",
-                "-I${workspaceFolder}\\",
+                "-I${workspaceFolder}/",
                 "-c",
-                "${workspaceFolder}\\src\\nvector.c",
+                "${workspaceFolder}/cvector/nvector.c",
                 "-o",
-                "${workspaceFolder}\\obj\\src\\nvector_debug.o"
+                "${workspaceFolder}/obj/cvector/nvector_debug.o"
             ],
             "group": "test"
         },
@@ -112,9 +112,9 @@
                 "-O2",
                 "-I${workspaceFolder}/",
                 "-c",
-                "${workspaceFolder}/test/test_static.c",
+                "${workspaceFolder}/example/test_static.c",
                 "-o",
-                "${workspaceFolder}/obj/test/test_static.o"
+                "${workspaceFolder}/obj/example/test_static.o"
             ],
             "group": "build"
         },
@@ -129,11 +129,11 @@
                 "-Wall",
                 "-std=c11",
                 "-g",
-                "-I${workspaceFolder}\\",
+                "-I${workspaceFolder}/",
                 "-c",
-                "${workspaceFolder}\\test\\test_static.c",
+                "${workspaceFolder}/example/test_static.c",
                 "-o",
-                "${workspaceFolder}\\obj\\test\\test_static_debug.o"
+                "${workspaceFolder}/obj/example/test_static_debug.o"
             ],
             "group": "test"
         },
@@ -150,9 +150,9 @@
             "args": [
                 "-o",
                 "${workspaceFolder}/bin/test_static.exe",
-                "${workspaceFolder}/obj/src/svector.o",
-                "${workspaceFolder}/obj/src/nvector.o",
-                "${workspaceFolder}/obj/test/test_static.o",
+                "${workspaceFolder}/obj/cvector/svector.o",
+                "${workspaceFolder}/obj/cvector/nvector.o",
+                "${workspaceFolder}/obj/example/test_static.o",
                 "-s"
             ],
             "group": {
@@ -175,10 +175,10 @@
             "command": "gcc",
             "args": [
                 "-o",
-                "${workspaceFolder}\\bin\\test_static_debug.exe",
-                "${workspaceFolder}\\obj\\src\\svector_debug.o",
-                "${workspaceFolder}\\obj\\src\\nvector_debug.o",
-                "${workspaceFolder}\\obj\\test\\test_static_debug.o"
+                "${workspaceFolder}/bin/test_static_debug.exe",
+                "${workspaceFolder}/obj/cvector/svector_debug.o",
+                "${workspaceFolder}/obj/cvector/nvector_debug.o",
+                "${workspaceFolder}/obj/example/test_static_debug.o"
             ],
             "group": "test",
             "problemMatcher": [
