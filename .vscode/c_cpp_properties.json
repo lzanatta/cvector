@@ -1,9 +1,9 @@
 {
   "configurations": [
       {
-          "name": "MinGW",
+          "name": "Win32",
           "includePath": [
-              "${workspaceFolder}/**"
+              "${workspaceFolder}"
           ],
           "defines": [
               "_DEBUG",
