@@ -1,7 +1,7 @@
 #include <stdio.h>
 
-#include "src/svector.h"
-#include "src/nvector.h"
+#include "cvector/svector.h"
+#include "cvector/nvector.h"
 
 int main(void)
 {
@@ -10,8 +10,8 @@ int main(void)
 
     int i = 0;
 
-    setStrVector(&string, SV_INITIAL_SIZE_ONE);
-    setNumVector(&numbers, NV_INITIAL_SIZE);
+    // setStrVector(&string, SV_INITIAL_SIZE_ONE);
+    // setNumVector(&numbers, NV_INITIAL_SIZE);
 
 //    FILE *testFile;
 //
@@ -19,13 +19,13 @@ int main(void)
 
     printf("\nUsing cvector as a DLL\n\n");
 
-    appendStrVector(&string, "x");
+    // appendStrVector(&string, "x");
 
     printf("string contents: ");
 
-    for (i = 0; i < string.vectorSize; i++) {
-        printf("%c", string.data[i]);
-    }
+    // for (i = 0; i < string.vectorSize; i++) {
+    //     printf("%c", string.data[i]);
+    // }
 
     printf("\n\n");
 
