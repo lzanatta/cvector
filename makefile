@@ -5,7 +5,7 @@ OBJS = obj/example/test_static.o \
 	   obj/cvector/nvector.o
 
 CC = gcc
-CFLAGS = -Wunreachable-code -pedantic -Wextra -Wall -std=c11 -O2 -IC:/repos/cvector/cvector
+CFLAGS = -Wunreachable-code -pedantic -Wextra -Wall -std=c11 -O2 -I"../cvector/"
 
 test_static: test_static.o svector.o nvector.o
 	$(CC) -o bin/test_static $(OBJS) -s
