@@ -35,9 +35,6 @@ int svector_add(svector *cvector, char *element);
 // Clear and reset vector
 void svector_clear(svector *cvector);
 
-// Print vector data
-void svector_print(svector *cvector);
-
 // Deallocate vector
 void svector_free(svector *cvector);
 

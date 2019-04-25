@@ -1,5 +1,4 @@
 #include <stdlib.h>
-#include <stdio.h>
 
 #include "svector.h"
 
@@ -100,22 +99,6 @@ void svector_clear(svector *cvector)
         cvector->data[cvector->index] = '\0';
     }
     cvector->index = 0;
-}
-
-// Print vector data
-void svector_print(svector *cvector)
-{
-   if (cvector->data != NULL) 
-   {
-       if (cvector->data[0] == '\0') 
-       {
-           printf("[]");
-       }
-       else
-       {
-           printf("%s", cvector->data);
-       }
-   }
 }
 
 // Deallocate vector
