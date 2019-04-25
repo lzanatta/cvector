@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "cvector/svector.h"
+#include "../cvector/svector.h"
 
 int main(int argc, char *argv[])
 {   
@@ -44,16 +44,16 @@ int main(int argc, char *argv[])
             printf("%c", string.data[idx]);
         }
 
-        // A print function is also included
-        printf("\n Using built-in print function:\n\n");
-        svector_print(&string);
+        // Of course the vector can be printed directly like any other string
+        printf("\n Printing like a string:\n\n");
+        printf("%s", string.data);
 
         // If needed, the vector can be cleared
         printf("\n Clearing the vector:\n\n");
         svector_clear(&string);
-        svector_print(&string);
+        printf("%s", string.data);
 
-        printf("\n");
+        printf("\n ^^^prints nothing^^^\n");
 
         // After using the vector (allocated in the heap), it should be deallocated
         svector_free(&string);
