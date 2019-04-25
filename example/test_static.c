@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-#include "../cvector/svector.h"
+#include "cvector/svector.h"
 
 int main(int argc, char *argv[])
 {   
