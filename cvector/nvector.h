@@ -16,15 +16,18 @@ typedef struct cvector {
 } nvector;
 
 // Allocate and zero initialize vector
-void setNumVector(nvector *cvector, size_t initial_size);
+int nvector_init(nvector *cvector, size_t initial_length);
 
-// Append number into vector and resize it if necessary
-int appendNumVector(nvector *cvector, unsigned int *element);
+// Append data into vector and resize it if necessary
+int nvector_add(nvector *cvector, unsigned int *element);
 
 // Print vector in the terminal
 // void showNumVector(nvector *cvector, int i);
 
-// Clear and deallocate vector
-void freeNumVector(nvector *cvector);
+// Clear and reset vector
+void nvector_clear();
+
+// Deallocate vector
+void nvector_free(nvector *cvector);
 
 #endif // NVECTOR_H_INCLUDED

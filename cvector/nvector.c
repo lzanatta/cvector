@@ -1,17 +1,10 @@
 #include <stdlib.h>
-//#include <stdio.h>
 
 #include "nvector.h"
 
 // Allocate and zero initialize vector
-void setNumVector(nvector *cvector, size_t initial_size)
+int nvector_set(nvector *cvector, size_t initial_length)
 {
-    // Allocates the array and initializes all bits to zero
-    cvector->data = (unsigned int *)calloc(initial_size, sizeof(unsigned int));
-    cvector->length = initial_size;
-    cvector->index = 0;
-    cvector->print_index= 0;
-
     /*
         Other possible methods to allocate and clear the array:
 
@@ -31,10 +24,16 @@ void setNumVector(nvector *cvector, size_t initial_size)
         memset(cvector->data, 0, initialSize * (sizeof(cvector->data[cvector->dataIndex])));
 
         */
+
+    // Allocates the array and initializes all bits to zero
+    cvector->data = (unsigned int *)calloc(initial_length, sizeof(unsigned int));
+    cvector->length = initial_length;
+    cvector->index = 0;
+    cvector->print_index= 0;
 }
 
 // Append data into vector and resize it if necessary
-int appendNumVector(nvector *cvector, unsigned int *element)
+int nvector_add(nvector *cvector, unsigned int *element)
 {
     if (cvector->index == (cvector->length - 1))
     {
@@ -73,8 +72,18 @@ int appendNumVector(nvector *cvector, unsigned int *element)
 //    }
 //}
 
+// Clear and reset vector
+void nvector_clear(nvector *cvector)
+{
+    for (cvector->index = 0; cvector->index < cvector->length; cvector->index++)
+    {
+        cvector->data[cvector->index] = 0;
+    }
+    cvector->index = 0;
+}
+
 // Deallocate vector
-void freeNumVector(nvector *cvector)
+void nvector_free(nvector *cvector)
 {
     cvector->data = NULL;
     cvector->length = cvector->index = cvector->print_index = 0;
