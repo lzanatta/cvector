@@ -2,7 +2,7 @@ VPATH = cvector example
 
 OBJS = obj/example/test_static.o \
        obj/cvector/svector.o \
-	   obj/cvector/nvector.o
+       obj/cvector/nvector.o
 
 CC = gcc
 CFLAGS = -Wunreachable-code -pedantic -Wextra -Wall -std=c11 -O2 -I"../cvector/"
