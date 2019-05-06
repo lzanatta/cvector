@@ -1,27 +1,27 @@
 {
-    "version": "2.0.0",
-    "presentation": {
-        "echo": true,
-        "reveal": "always",
-        "focus": false,
-        "panel": "shared",
-        "showReuseMessage": false,
-        "clear": false
-    },
-    "tasks": [
-        {
-            "label": "build program",
-            "type": "shell",
-            "windows": {
-                "command": "build_folders make && mingw32-make"
-            },
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
-            "problemMatcher": [
-                "$gcc"
-            ]
-        }
-    ]
+  "version": "2.0.0",
+  "presentation": {
+    "echo": true,
+    "reveal": "always",
+    "focus": false,
+    "panel": "shared",
+    "showReuseMessage": false,
+    "clear": false
+  },
+  "tasks": [
+    {
+      "label": "build program",
+      "type": "shell",
+      "windows": {
+        "command": "build_folders make && mingw32-make"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": [
+        "$gcc"
+      ]
+    }
+  ]
 }
