@@ -18,18 +18,28 @@ INCLUDES = -I"../cvector/"
 
 # Setup clean for Windows
 ifeq ($(OS),Windows_NT)
-	RM = del /Q
-	OBJ_FILES = $(subst /,\,$(OBJS))
-	OBJ_FILES_DEBUG = $(subst /,\,$(OBJS_DEBUG))
-	BIN_RELEASE = $(subst /,\,$(addsuffix .exe,$(BINARY_RELEASE)))
-	BIN_DEBUG = $(subst /,\,$(addsuffix .exe,$(BINARY_DEBUG)))
+    RM = del /Q
+    OBJ_FILES = $(subst /,\,$(OBJS))
+    OBJ_FILES_DEBUG = $(subst /,\,$(OBJS_DEBUG))
+    BIN_RELEASE = $(subst /,\,$(addsuffix .exe,$(BINARY_RELEASE)))
+    BIN_DEBUG = $(subst /,\,$(addsuffix .exe,$(BINARY_DEBUG)))
 else
-	RM = -rm
-	OBJ_FILES = $(OBJS)
-	OBJ_FILES_DEBUG = $(OBJS_DEBUG)
-	BIN_RELEASE = $(BINARY_RELEASE)
-	BIN_DEBUG = $(BINARY_DEBUG)
+    RM = -rm
+    OBJ_FILES = $(OBJS)
+    OBJ_FILES_DEBUG = $(OBJS_DEBUG)
+    BIN_RELEASE = $(BINARY_RELEASE)
+    BIN_DEBUG = $(BINARY_DEBUG)
 endif
+
+# ifeq ($(OS),Windows_NT)
+# 	RM = del /Q
+# 	fix_path = $(subst /,\,$1)
+# 	BIN_RELEASE = $(addsuffix .exe,$(BINARY_RELEASE))
+# 	BIN_DEBUG = $(addsuffix .exe,$(BINARY_DEBUG))
+# else
+# 	RM = -rm
+# 	fix_path = $1
+# endif
 
 # Targets
 .PHONY: clean
@@ -64,16 +74,6 @@ nvector_debug.o: nvector.c nvector.h
 clean:
 	$(RM) $(BIN_RELEASE) $(BIN_DEBUG) $(OBJ_FILES) $(OBJ_FILES_DEBUG)
 
-# ifeq ($(OS),Windows_NT)
-# 	RM = del /Q
-# 	fix_path = $(subst /,\,$1)
-# 	B_RELEASE = $(addsuffix .exe,$(BUILD_RELEASE))
-# 	B_DEBUG = $(addsuffix .exe,$(BUILD_DEBUG))
-# else
-# 	RM = -rm
-# 	fix_path = $1
-# endif
-
 # clean:
-# 	$(RM) $(call fix_path,$(B_RELEASE)) $(call fix_path,$(B_DEBUG)) \
-# 	$(call fix_path,$(OBJS)) $(call fix_path,$(OBJS_DEBUG))
+# 	$(RM) $(call fix_path,$(BIN_RELEASE)) $(call fix_path,$(BIN_DEBUG)) \
+# 	$(call fix_path,$(OBJ_FILES)) $(call fix_path,$(OBJ_FILES_DEBUG))
