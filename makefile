@@ -32,13 +32,13 @@ else
 endif
 
 # ifeq ($(OS),Windows_NT)
-# 	RM = del /Q
-# 	fix_path = $(subst /,\,$1)
-# 	BIN_RELEASE = $(addsuffix .exe,$(BINARY_RELEASE))
-# 	BIN_DEBUG = $(addsuffix .exe,$(BINARY_DEBUG))
+#     RM = del /Q
+#     fix_path = $(subst /,\,$1)
+#     BIN_RELEASE = $(addsuffix .exe,$(BINARY_RELEASE))
+#     BIN_DEBUG = $(addsuffix .exe,$(BINARY_DEBUG))
 # else
-# 	RM = -rm
-# 	fix_path = $1
+#     RM = -rm
+#     fix_path = $1
 # endif
 
 # Targets
