@@ -10,7 +10,7 @@
   },
   "tasks": [
     {
-      "label": "build program",
+      "label": "Build test_static",
       "type": "shell",
       "windows": {
         "command": "build_folders make && mingw32-make"
@@ -22,6 +22,24 @@
       "problemMatcher": [
         "$gcc"
       ]
+    },
+    {
+      "label": "Build test_static DEBUG",
+      "type": "shell",
+      "windows": {
+        "command": "build_folders make && mingw32-make debug"
+      },
+      "group": "test",
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
+      "label": "Clean",
+      "type": "shell",
+      "windows": {
+        "command": "mingw32-make clean"
+      }
     }
   ]
 }
