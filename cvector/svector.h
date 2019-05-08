@@ -9,7 +9,7 @@
 #define SV_MAX_LENGTH_TWO       8192
 #define SV_RESIZE_RATE_TWO      256
 
-#define SV_CAP_REACHED          -2
+#define SV_CAP_ERROR            -2
 #define SV_CAP_ERROR_VERBOSE    "svector maximum size reached"
 #define SV_ALLOC_ERROR          -1
 #define SV_ALLOC_ERROR_VERBOSE  "svector allocation error"

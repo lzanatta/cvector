@@ -6,28 +6,26 @@
 int svector_set(svector *cvector, size_t initial_length)
 {
     /*
-        Other possible methods to allocate and clear the array:
+     * Other possible methods to allocate and clear the array:
+     * 
+     * Using malloc (requires manually clearing the array after allocation):
+     * 
+     * cvector->data = (char *)malloc(initial_length * sizeof(char));
+     * for (cvector->index = 0; cvector->index < initial_length; cvector->index++)
+     * {
+     *     cvector->data[cvector->index] = '\0';
+     * }
+     * 
+     * Using memset (requires string.h):
+     * 
+     * memset(cvector->data, 0, initial_length * (sizeof(cvector->data[cvector->index])));
+     */
 
-        Using malloc (requires manually clearing the array after allocation):
-
-        cvector->data = (char *)malloc(initialSize * sizeof(char));
-        for (cvector->index = 0; cvector->index < initialSize; cvector->index++)
-        {
-            cvector->data[cvector->index] = '\0';
-        }
-        cvector->vectorSize = initialSize;
-        cvector->index = 0;
-
-        Using memset (requires string.h):
-
-        memset(cvector->data, 0, initialSize * (sizeof(cvector->data[cvector->index])));
-
-        */
 
     // Allocates the array and initializes all bits to zero
     cvector->data = (char *)calloc(initial_length, sizeof(char));
 
-    //if ((cvector->data = (char *)calloc(initialSize, sizeof(char))) == NULL)
+    //if ((cvector->data = (char *)calloc(initial_length, sizeof(char))) == NULL)
     if (cvector->data == NULL)
     {
         return SV_ALLOC_ERROR;
@@ -58,21 +56,21 @@ int svector_add(svector *cvector, char *element)
 {
     if (cvector->index == (cvector->length - 1))
     {
-        //if (cvector->vectorSize < SV_MAX_SIZE_ONE)
+        //if (cvector->length < SV_MAX_SIZE_ONE)
         if (cvector->length < cvector->max_length)
         {
-            //cvector->vectorSize += SV_GROWTH_FACTOR_ONE;
+            //cvector->length += SV_GROWTH_FACTOR_ONE;
             cvector->length += cvector->resize_rate;
             cvector->data = (char *)realloc(cvector->data, cvector->length * sizeof(char));
 
             for (unsigned int i = cvector->index; i < cvector->length; i++)
             {
-                cvector->data[i] =  '\0';
+                cvector->data[i] = '\0';
             }
         }
         else
         {
-            return SV_CAP_REACHED;
+            return SV_CAP_ERROR;
         }
     }
 

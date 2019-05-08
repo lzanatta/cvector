@@ -17,9 +17,7 @@ int main(int argc, char *argv[])
     // setNumVector(&numbers, NV_INITIAL_SIZE);
 
     printf("\n Using cvector built statically with test program.\n");
-
     printf("\n Testing svector functionality:\n");
-    
     printf("\n Reading contents from '%s':\n\n", argv[1]);
 
     testFile = fopen(argv[1], "r");
@@ -44,7 +42,7 @@ int main(int argc, char *argv[])
             printf("%c", string.data[idx]);
         }
 
-        // Of course the vector can be printed directly like any other string
+        // The vector can also be printed directly like any other string
         printf("\n Printing like a string:\n\n");
         printf("%s", string.data);
 
@@ -52,7 +50,6 @@ int main(int argc, char *argv[])
         printf("\n Clearing the vector:\n\n");
         svector_clear(&string);
         printf("%s", string.data);
-
         printf("\n ^^^prints nothing^^^\n");
 
         // After using the vector (allocated in the heap), it should be deallocated
