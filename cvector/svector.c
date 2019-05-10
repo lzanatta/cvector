@@ -21,7 +21,6 @@ int svector_set(svector *cvector, size_t initial_length)
      * memset(cvector->data, 0, initial_length * (sizeof(cvector->data[cvector->index])));
      */
 
-
     // Allocates the array and initializes all bits to zero
     cvector->data = (char *)calloc(initial_length, sizeof(char));
 
@@ -56,10 +55,10 @@ int svector_add(svector *cvector, char *element)
 {
     if (cvector->index == (cvector->length - 1))
     {
-        //if (cvector->length < SV_MAX_SIZE_ONE)
+        // if (cvector->length < SV_MAX_LENGTH_ONE)
         if (cvector->length < cvector->max_length)
         {
-            //cvector->length += SV_GROWTH_FACTOR_ONE;
+            // cvector->length += SV_RESIZE_RATE_ONE;
             cvector->length += cvector->resize_rate;
             cvector->data = (char *)realloc(cvector->data, cvector->length * sizeof(char));
 

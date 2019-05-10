@@ -15,7 +15,7 @@
 #define SV_ALLOC_ERROR_VERBOSE  "svector allocation error"
 
 // svector struct for a dynamically sized array of chars ("string")
-typedef struct cvector {
+typedef struct svector {
     char *data;             // Vector data
     size_t index;           // Data index
     size_t length;          // Vector length
