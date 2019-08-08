@@ -1,4 +1,14 @@
+# *************************************************************************************************
+# Directory search
+# *************************************************************************************************
 VPATH = cvector example
+
+# *************************************************************************************************
+# Variables
+# *************************************************************************************************
+CC = gcc
+CFLAGS = -Wunreachable-code -pedantic -Wextra -Wall -std=c11
+INCLUDES = -I"../cvector/"
 
 OBJS = obj/example/test_static.o \
        obj/cvector/svector.o \
@@ -9,14 +19,11 @@ OBJS_DEBUG = obj/example/test_static_debug.o \
              obj/cvector/nvector_debug.o
 
 BINARY_RELEASE = bin/test_static
-
 BINARY_DEBUG = bin/test_static_debug
 
-CC = gcc
-CFLAGS = -Wunreachable-code -pedantic -Wextra -Wall -std=c11
-INCLUDES = -I"../cvector/"
-
-# Setup clean for Windows
+# *************************************************************************************************
+# Setup clean for either Windows or Linux
+# *************************************************************************************************
 ifeq ($(OS),Windows_NT)
     RM = del /Q
     OBJ_FILES = $(subst /,\,$(OBJS))
@@ -41,11 +48,15 @@ endif
 #     fix_path = $1
 # endif
 
+# *************************************************************************************************
 # Targets
+# *************************************************************************************************
 .PHONY: clean
 .DEFAULT_GOAL := test_static
 
+# *************************************************************************************************
 # Release build
+# *************************************************************************************************
 test_static: test_static.o svector.o nvector.o
 	$(CC) -o $(BINARY_RELEASE) $(OBJS) -s
 
@@ -58,7 +69,9 @@ svector.o: svector.c svector.h
 nvector.o: nvector.c nvector.h
 	$(CC) $(CFLAGS) -O2 $(INCLUDES) -c cvector/nvector.c -o obj/cvector/nvector.o
 
+# *************************************************************************************************
 # Debug build
+# *************************************************************************************************
 debug: test_static_debug.o svector_debug.o nvector_debug.o
 	$(CC) -o $(BINARY_DEBUG) $(OBJS_DEBUG)
 
@@ -71,6 +84,9 @@ svector_debug.o: svector.c svector.h
 nvector_debug.o: nvector.c nvector.h
 	$(CC) $(CFLAGS) -g $(INCLUDES) -c cvector/nvector.c -o obj/cvector/nvector_debug.o
 
+# *************************************************************************************************
+# Cleanup
+# *************************************************************************************************
 clean:
 	$(RM) $(BIN_RELEASE) $(BIN_DEBUG) $(OBJ_FILES) $(OBJ_FILES_DEBUG)
 
