@@ -3,12 +3,10 @@
 #include "cvector/svector.h"
 #include "cvector/nvector.h"
 
-int main(void)
+int main(int argc, char *argv[])
 {
     svector string;
     nvector numbers;
-
-    int i = 0;
 
     // setStrVector(&string, SV_INITIAL_SIZE_ONE);
     // setNumVector(&numbers, NV_INITIAL_SIZE);
@@ -17,7 +15,9 @@ int main(void)
 //
 //    testFile = fopen("input.txt", "r");
 
-    printf("\nUsing cvector as a DLL\n\n");
+    printf("\n Using cvector as a shared library.\n");
+
+    printf("\n Testing svector functionality:\n");
 
     // appendStrVector(&string, "x");
 
